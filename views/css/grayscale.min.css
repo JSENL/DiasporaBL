@@ -23,3 +23,8 @@ body{font-family:Lora,'Helvetica Neue',Helvetica,Arial,sans-serif;position:relat
     -o-background-size: 65%;
     background-size: 65%;
   }
+
+   #map {
+        width: 400px;
+        height: 250px;
+      }
