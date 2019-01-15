@@ -2,6 +2,18 @@
 <html lang="en">
 
   <head>
+<!-- /*need map api (Leaflet tutorials to do)
+MongoDB
+BHM Tidbits
+Need schema for events (Date, time)
+location, name, descr, rating system, comments
+Black history: location, date of events, description, person/place
+
+look up non profits, cdc
+
+People: W. Indian, Cape Verdean, Brazilian, Afrolatino, African, Afr-Americans
+Funds for BH Site Improvement
+ -->
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -17,6 +29,8 @@
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Cabin:700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+   crossorigin=""/>
 
     <!-- Custom styles for this template -->
     <link href="css/grayscale.min.css" rel="stylesheet">
@@ -147,8 +161,13 @@
     <!-- Plugin JavaScript -->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script>
+    <!-- Leaflet Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
+   <!-- Make sure you put this AFTER Leaflet's CSS -->
+   <div id="mapid"></div>
+   <script type="text/javascript">var mymap = L.map('mapid').setView([51.505, -0.09], 13);</script>
+ <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+   integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+   crossorigin=""></script>
 
     <!-- Custom scripts for this template -->
     <script src="js/grayscale.min.js"></script>

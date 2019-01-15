@@ -7,6 +7,8 @@ body {
   background-color: black;
 }
 
+#mapid { height: 180px; }
+
 html {
   width: 100%;
   height: 100%;
