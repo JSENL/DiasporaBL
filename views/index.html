@@ -19,6 +19,8 @@ Funds for BH Site Improvement
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+<script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
+
 
     <title>DiasporaBl </title>
 
@@ -50,6 +52,9 @@ Funds for BH Site Improvement
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#map">Map</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#about">About</a>
             </li>
             <li class="nav-item">
@@ -80,6 +85,32 @@ Funds for BH Site Improvement
         </div>
       </div>
     </header>
+
+  <!-- Open Layers Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
+   <!-- Make sure you put this AFTER Leaflet's CSS -->
+   <section id="about" class="content-section text-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <div id="map"></div>  
+        <script type="text/javascript">
+      var map = new ol.Map({
+        target: 'map',
+        layers: [
+          new ol.layer.Tile({
+            source: new ol.source.OSM()
+          })
+        ],
+        view: new ol.View({
+          center: ol.proj.fromLonLat([-71.07, 42.34]),
+          zoom: 11.4
+        })
+      });
+      </script>
+          </div>
+        </div>
+      </div>
+  </section>
 
     <!-- About Section -->
     <section id="about" class="content-section text-center">
@@ -148,12 +179,12 @@ Funds for BH Site Improvement
     <div id="map"></div>
 
     <!-- Footer -->
-    <footer>
+  <!--   <footer>
       <div class="container text-center">
         <p>Copyright &copy; Your Website 2018</p>
       </div>
     </footer>
-
+ -->
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -161,11 +192,7 @@ Funds for BH Site Improvement
     <!-- Plugin JavaScript -->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Leaflet Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
-   <!-- Make sure you put this AFTER Leaflet's CSS -->
-  <div id="map"></div>  
-
-
+  
 
     <!-- Custom scripts for this template -->
     <script src="js/grayscale.min.js"></script>

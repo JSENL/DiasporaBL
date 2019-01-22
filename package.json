@@ -1,9 +1,4 @@
 {
-  "test": "echo \"Error: no test specified\" && exit 1",
-  "start": "parcel index.html",
-  "build": "parcel build --public-url . index.html"
-}
-{
   "title": "Grayscale",
   "name": "startbootstrap-grayscale",
   "version": "4.1.1",
@@ -58,6 +53,9 @@
   },
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel index.html",
+    "build": "parcel build --public-url . index.html"
   }
+
 }
