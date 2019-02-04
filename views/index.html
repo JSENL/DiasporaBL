@@ -88,10 +88,42 @@ Funds for BH Site Improvement
 
   <!-- Open Layers Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
    <!-- Make sure you put this AFTER Leaflet's CSS -->
+   
    <section id="about" class="content-section text-center">
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto">
+       <div id="map" class="map"></div>
+    <script src="../assets/ol3/js/ol.js"></script>
+    <script>
+      var sourceBingMaps = new ol.source.BingMaps({
+        key: 'Ak-dzM4wZjSqTlzveKz5u0d4IQ4bRzVI309GxmkgSVr1ewS6iPSrOvOKhA-CJlm3',
+        imagerySet: 'Road',
+        culture: 'fr-FR'
+      });
+
+      var bingMapsRoad = new ol.layer.Tile({
+        preload: Infinity,
+        source: sourceBingMaps
+      });
+
+      var bingMapsAerial = new ol.layer.Tile({
+        preload: Infinity,
+        source: new ol.source.BingMaps({
+          key: 'Ak-dzM4wZjSqTlzveKz5u0d4IQ4bRzVI309GxmkgSVr1ewS6iPSrOvOKhA-CJlm3',
+          imagerySet: 'Aerial',
+        })
+      });
+
+      var map = new ol.Map({
+        layers: [bingMapsRoad,bingMapsAerial],
+        target: 'map',
+        view: new ol.View({
+          center: ol.proj.transform([6.562783, 46.517814], 'EPSG:4326', 'EPSG:3857'),
+          zoom: 13
+        })
+      });
+    </script>
             <div id="map"></div>  
         <script type="text/javascript">
       var map = new ol.Map({
@@ -112,6 +144,9 @@ Funds for BH Site Improvement
       </div>
   </section>
 
+
+<!-- /* Map needs to be taller & wider, less space for Info on rhs
+Top bar needs color and border around Categories, Move categories to left of Sort By,  -->
     <!-- About Section -->
     <section id="about" class="content-section text-center">
       <div class="container">
@@ -185,6 +220,8 @@ Funds for BH Site Improvement
       </div>
     </footer>
  -->
+
+ 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
