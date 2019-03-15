@@ -1,0 +1,24 @@
+Id,Business_Name,Address,Neighborhood,Food_Type,Website,Latitude,Longitude
+1,Darryl's Corner Bar and Kitchen,"604 Columbus Ave, Boston, Ma",South End,BBQ Joint,http://dcbkboston.com/,42.339767,-71.0824
+2,Teranga Restaurant,"1746 Washington Street, Boston, Ma",South End,African Food,http://terangaboston.com/,42.336477,-71.076531
+3,La Fabrica Central,"450 Massachusetts Ave, Cambridge, Ma",Cambridge,Caribbean Food,https://www.lafabricacentral.com/,42.363484,-71.101101
+4,Savvor Restaurant,"180 Lincoln Street, Boston, MA 02111",Finance District,Haitian,https://www.savvorbostonlounge.com/,42.350537,-71.058441
+5,Restaurante Cesaria,"266 Bowdoin Street, Boston, Ma",North Dorchester,Cape Verdean/African,https://www.facebook.com/RestaurantCesaria/,42.30692,-71.06667
+6,Restaurant Laura,"688 Columbia Rd, Dorchester, MA 02125",North Dorchester,Cape Verdean/African,https://www.facebook.com/pages/category/Family-Style-Restaurant/Restaurant-Laura-347785340882/,42.320097,-71.062641
+7,BRED,"2255 Dorchester Ave Boston, MA 02124",South Dorchester,Burger Joint,http://www.bredgourmet.com/,42.273407,-71.067951
+8,ZAZ Restaurant,"1238 River St, Hyde Park, MA 02136",Hyde Park,Caribbean,http://www.zazrestaurant.com/,42.255807,-71.122991
+9,MIDA Restaurant,"782 Tremont St, Boston, MA 02118",South End,Italian,http://www.midaboston.com,42.339047,-71.080431
+10,Churrascaria Vulcão,"203 Adams St, Boston, MA 02122",South Dorchester,Cape Verdean/Portuguese,http://www.churrascariavulcao.com/,42.301898,-71.060211
+11,Fort Hill Bar & Grill,"2805 Washington St, Boston, MA 02119",Roxbury,Dominican/American,https://www.facebook.com/forthillbarandgrill/,42.321426,-71.092089
+12,Suyya Joint,"185 Dudley St #2, Roxbury, MA 02119",Roxbury,Nigerian ,https://suyajoint.com/,42.32832,-71.08196
+13,Dona Habana,"811 Massachusetts Ave, Boston, MA 02118",South End,Cuban,http://donahabanarestaurant.com/,42.332703,-71.072923
+14,Addis Red Sea,"544 Tremont St, Boston, MA 02116",South End,Ethiopian,http://www.addisredsea.com/,42.344027,-71.071051
+15,The Coast Cafe,"233 River St, Cambridge, MA 02139",Cambridge,South American,http://www.coastsoulcafe.com/,42.363012,-71.111597
+16,Wally's Jazz Cafe,"427 Massachusetts Ave, Boston, MA 02118",South End,Jazz Bar,http://wallyscafe.com/,42.340697,-71.082291
+17,Slade's Bar and Grille ,"958 Tremont St, Boston, MA 02120",South End,Southern ,https://www.sladesbarandgrill.com/,42.337256,-71.083617
+18,Rock CIty Pizza,"568 Cambridge St, Allston, MA 02134",Allston,Pizzeria,https://rockcitypizzeria.com/,42.352312,-71.14044
+19,Ashur Restaurant,"291 Roxbury St, Roxbury, MA 02119",Roxbury,Somali,https://www.bostonmagazine.com/best-of-boston/2015/ashur-restaurant/,42.330427,-71.094301
+20,Asmara Restaurant,"739 Massachusetts Ave, Cambridge, MA 02139",Cambridge,Ethiopian,http://www.asmararestaurantboston.com/,42.366458,-71.105164
+21,Flames,"469 Blue Hill Avenue, Dorchester, MA 02121",Dorchester-Grove Hall,Jamaican,,42.309036,-71.083258
+22,Flames II,"746 Huntington Ave, Boston, MA 02115",Mission Hill,Jamaican,https://www.zagat.com/r/flames-restaurant-inc-boston1,42.333647,-71.105491
+23,The Beehive,"541 Tremont St, Boston, MA 02116",South End,American,https://www.beehiveboston.com/,42.344716,-71.071388

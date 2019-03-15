@@ -36,8 +36,32 @@ body{font-family:Lora,'Helvetica Neue',Helvetica,Arial,sans-serif;position:relat
         padding: 0;
       }
 
-/*   #map {
-   
-        width: 1000px;
-        height: 500px;
-      }*/
+ /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+    #map {
+      height: 100%;
+    }
+
+    /* Optional: Makes the sample page fill the window. */
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    .flex-container {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    /* Flex items */
+    .make-pretty {
+      /* border-top: 1px solid black; */
+      /* border-bottom: 1px solid black; */
+      padding: 2px;
+      margin: 2px;
+      flex: 1 200px;
+
+      /* white-space: pre; */
+    }

@@ -1,7 +1,6 @@
 const product = require('./routes/product.route'); // Imports routes for the products
-const express = require('express');
 const bodyParser = require('body-parser');
-const mysql = require('mysql');
+const express = require('express');
 const app = express();
 app.set("view engine", "ejs");
 const mongoose = require('mongoose');
@@ -29,4 +28,4 @@ app.get('/', (req, res) => {
 });
 
 app.use('/', express.static('views'));
-app.listen(3000, () => console.log('App listening on port 3000! I needs work.'));
+app.listen(3000, () => console.log('App listening on port 3000, welcome.'));
