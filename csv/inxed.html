@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+<!-- /*need map api (Leaflet tutorials to do)
+MongoDB
+BHM Tidbits
+Need schema for events (Date, time)
+location, name, descr, rating system, comments
+Black history: location, date of events, description, person/place
+
+look up non profits, cdc
+
+People: W. Indian, Cape Verdean, Brazilian, Afrolatino, African, Afr-Americans
+Funds for BH Site Improvement
+ --> <style>
+    /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+    #map {
+      height: 100%;
+    }
+
+    /* Optional: Makes the sample page fill the window. */
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    .flex-container {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    /* Flex items */
+    .make-pretty {
+      /* border-top: 1px solid black; */
+      /* border-bottom: 1px solid black; */
+      padding: 2px;
+      margin: 2px;
+      flex: 1 200px;
+
+      /* white-space: pre; */
+    }
+  </style>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+<script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
+
+
+    <title>DiasporaBl </title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Cabin:700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+   crossorigin=""/>
+
+    <!-- Custom styles for this template -->
+    <link href="css/grayscale.min.css" rel="stylesheet">
+
+  </head>
+
+  <body id="page-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">Home</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#map">Map</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#download">Download App</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Intro Header -->
+    <header class="masthead">
+      <div class="intro-body">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <h1 class="brand-heading">DiasporaBl</h1>
+              <p class="intro-text">Home no matter where you are.
+                <!-- <br>Created by Jasen Lambright</p> -->
+              <a href="#about" class="btn btn-circle js-scroll-trigger">
+                <i class="fa fa-angle-double-down animated"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+<div id="map"></div>
+
+  <script src="import-csv.js"></script>
+  <script>
+
+    /* API KEY: 'AIzaSyD7RlLs_flZ81oUKIROBpqEIVhUtUd2IBY' */
+
+    let map;
+    function initMap() {
+      map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 12,
+        center: new google.maps.LatLng(42.30692, -71.06667),
+        // mapTypeId: 'terrain'
+        // mapTypeId: 'satellite'
+        mapTypeId: 'roadmap'
+      });
+
+
+      //outside of loop, so there is only one infoWindow and can be closed
+      let infowindow = new google.maps.InfoWindow({
+        content: ' '
+      });
+
+      for (let i = 0; i < ADDRESS_DATA.length; i++) {
+        // if (ADDRESS_DATA[i].City === 'Cambridge' && ADDRESS_DATA[i]['Type of Food'] === 'Caribbean Food') {
+          let latLng = new google.maps.LatLng(ADDRESS_DATA[i].Latitude, ADDRESS_DATA[i].Longitude);
+
+          let marker = new google.maps.Marker({
+            position: latLng,
+            map: map
+          });
+
+
+          let contentString = createContentString(ADDRESS_DATA[i]);
+
+          marker.addListener('click', function () {
+
+            infowindow.setPosition(latLng);
+            infowindow.setContent(contentString);
+            infowindow.open(map, marker);
+          });
+        // }
+      }
+
+      /* Closes infoWindow everytime the map is clicked, see
+      https://stackoverflow.com/questions/10022873/closing-info-windows-in-google-maps-by-clicking-the-map
+      */
+      google.maps.event.addListener(map, "click", function (event) {
+        infowindow.close();
+      });
+    }
+
+    /*  Creates and formats the content string. */
+    function createContentString(ADDRESS_DATA_at_I) {
+      let dataDivs = ''; // holds all info
+      for (let prop in ADDRESS_DATA_at_I)
+       {
+        dataDivs += '<div class="make-pretty"><b>' + prop + '</b>:' + ADDRESS_DATA_at_I[prop] + '</div>';
+      }
+
+
+      let formattedAddressAnchor = formatAddressLink(ADDRESS_DATA_at_I.Address);
+
+      return "<h2>" + ADDRESS_DATA_at_I["Name"] + '</h2>' +
+        '<p><a href=' + ADDRESS_DATA_at_I["Website"] +
+        " rel=\"noreferrer\"  target=\"_blank\">Website</a><p>" +
+        '<p>' + formattedAddressAnchor + "<p>" +
+        "<div class='flex-container'>" + dataDivs + '</div>';
+    }
+
+
+    /* 
+    For 'view on Google maps' see:
+    https://developers.google.com/maps/documentation/urls/guide
+    https://stackoverflow.com/questions/16326143/google-maps-directions-api-equivalent-url
+    http://gearside.com/easily-link-to-locations-and-directions-using-the-new-google-maps/
+    */
+
+    function formatAddressLink(address) {
+      //naive version, need to figure out a regex for string.replace
+      //returns an anchor element with the formatted address
+      let formattedAddress = '';
+      for (let i = 0; i < address.length; i++) {
+        if (address[i] === ' ') {
+          formattedAddress += '+';
+        } else if (address[i] === ',') {
+          formattedAddress += '';// only removes comma
+        } else {
+          formattedAddress += address[i];
+        }
+      }
+
+      //space after formattedAddress is relevant
+      return '<a href=' + 'https://www.google.com/maps?saddr=My+Location&daddr=' + formattedAddress +
+        ' ' + 'rel=\"noreferrer\"  target=\"_blank\">Directions</a>';
+
+    }
+
+  </script>
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7RlLs_flZ81oUKIROBpqEIVhUtUd2IBY&callback=initMap">
+    </script>
+
+    <!-- About Section -->
+    <section id="about" class="content-section text-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h2>About DiasporaBl</h2>
+            <p>DiasporaBl is a free App service to learn more about the African Diaspora in Boston. It can be yours right now, simply download the template on
+              <a href="http://startbootstrap.com/template-overviews/grayscale/">the preview page</a>. The theme is open source, and you can use it for any purpose, personal or commercial.</p>
+            <p>This theme features stock photos by
+              <a href="http://gratisography.com/">Gratisography</a>
+              along with a custom Google Maps skin courtesy of
+              <a href="http://snazzymaps.com/">Snazzy Maps</a>.</p>
+            <p>Grayscale includes full HTML, CSS, and custom JavaScript files along with SASS and LESS files for easy customization!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download" class="download-section content-section text-center">
+      <div class="container">
+        <div class="col-lg-8 mx-auto">
+          <h2>Download DiasporaBL</h2>
+          <p>You can download DiasporaBL for free on the preview page at Start Bootstrap.</p>
+          <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Visit Download Page</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="content-section text-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <h2>Contact us</h2>
+            <p>Feel free to leave us a comment on the
+              <a href="http://startbootstrap.com/template-overviews/grayscale/">DiasporaBL template overview page</a>
+             Learn more about events</p>
+            <ul class="list-inline banner-social-buttons">
+              <li class="list-inline-item">
+                <a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg">
+                  <i class="fa fa-twitter fa-fw"></i>
+                  <span class="network-name">Twitter</span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://github.com/BlackrockDigital/startbootstrap" class="btn btn-default btn-lg">
+                  <i class="fa fa-github fa-fw"></i>
+                  <span class="network-name">Github</span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="https://plus.google.com/+Startbootstrap/posts" class="btn btn-default btn-lg">
+                  <i class="fa fa-google-plus fa-fw"></i>
+                  <span class="network-name">Google+</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Map Section -->
+    <div id="map"></div>
+
+    <!-- Footer -->
+  <!--   <footer>
+      <div class="container text-center">
+        <p>Copyright &copy; Your Website 2018</p>
+      </div>
+    </footer>
+ -->
+
+ 
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  
+
+    <!-- Custom scripts for this template -->
+    <script src="js/grayscale.min.js"></script>
+
+  </body>
+
+</html>
